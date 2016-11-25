@@ -1,4 +1,4 @@
-# Android enCrypter for External Storage Tools
+# Android Encryption Manager for External Storage
 
 This tool, called `andcrypter`, is aimed to use the adopted storage (which is, in
 principle, associated to a one and only physical device) from Linux and/or several
@@ -63,11 +63,14 @@ the disk. You need to extract the encryption key (using the subcommand `export`)
 
 The partition will be mounted with the command:
 
-    andcrypter mount <friendly_name> <path>
+    andcrypter mount <friendly_name> [<path>]
 
 If the encrypted partition is not "loaded", this command will load it (first asking
 the passphrase) and then will `mount` it. Note that both commands require superuser
 permissions and thus `andcrypter` will perform the command through `sudo`.
+
+The parameter `<path>` is required in the first execution. On successive executions,
+the path is remembered and is not required.
 
 ### Umount the partition
 

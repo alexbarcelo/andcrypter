@@ -1,6 +1,6 @@
 # Android enCrypter for External Storage Tools
 
-This tool, called `ancrypter`, is aimed to use the adopted storage (which is, in
+This tool, called `andcrypter`, is aimed to use the adopted storage (which is, in
 principle, associated to a one and only physical device) from Linux and/or several
 devices. The main idea is to have a "quite secure" pendrive that can be used from
 Linux distributions in addition to be connected (and understood) by more than one
@@ -29,7 +29,7 @@ software does, you may lose data. A lot of data. So be sure to know what you are
 I am not responsible of any of your actions (and don't complain if bad things happen). If you detect a bug
 please submit an issue and comment your problem.
 
-## Usage of the `ancrypter` tool
+## Usage of the `andcrypter` tool
 
 ### Disk preparation
 

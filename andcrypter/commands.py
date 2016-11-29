@@ -1,16 +1,19 @@
+from logging import getLogger
+
+logger = getLogger(__name__)
 
 
-def create():
-	pass
+def create(config, parse_args):
+	logger.info("Calling 'create' subcommand")
 
 
-def mount():
-	pass
+def mount(config, parse_args):
+	logger.info("Calling 'mount' subcommand")
 
 
-def umount():
-	pass
+def umount(config, parse_args):
+	logger.info("Calling 'umount' subcommand")
 
 
-def android():
-	pass
+def android(config, parse_args):
+	logger.info("Calling 'android' subcommand")

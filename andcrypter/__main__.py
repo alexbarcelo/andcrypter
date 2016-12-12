@@ -3,11 +3,14 @@ import logging
 
 import sys
 
+from os.path import expanduser
+
 from .commands import create, mount, umount, android
 from .config import Config
 
 logger = logging.getLogger(__name__)
 
+# This maps the subcommand word to the appropriate command function
 CALL_MAP = {
     "create": create,
     "mount": mount,
@@ -28,7 +31,7 @@ if __name__ == "__main__":
     parser.add_argument(
         '--file', '-f',
         help="Configuration file (by default ~/.andcrypter.ini)",
-        default="~/.andcrypter.ini",
+        default=expanduser("~/.andcrypter.ini"),
     )
     parser.add_argument(
         '--verbose', '-v',
@@ -107,7 +110,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Parse and set up first the logger-related args
-    if args.verbose > 0:
+    if args.verbose and args.verbose > 0:
         logging.basicConfig(level=logging.INFO if args.verbose == 1 else logging.DEBUG)
 
     logger.debug("Call parameters: %s", sys.argv)
@@ -116,8 +119,15 @@ if __name__ == "__main__":
     # Load the configuration file
     c = Config(args.file)
 
+    # A subcommand should be provideds
+    if not args.subcommand:
+        parser.print_usage()
+        exit(1)
+
     subcmd = CALL_MAP.get(args.subcommand)
 
     if not subcmd:
+        # In fact, argparser should have complained before this point,
+        # but this will be verboser in case of a bug
         raise RuntimeError("Unknown subcommand '%s'" % args.subcommand)
     subcmd(c, args)

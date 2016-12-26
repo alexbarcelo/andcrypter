@@ -77,6 +77,13 @@ def create(config, parse_args):
                         salt=salt,
                         encrypted_key=key_encrypted)
 
+    logger.info("Using Type-UUID")
+    try:
+        ret = check_output(["sudo", "blkid", "-o", "value", parse_args.dev_path])
+    except CalledProcessError:
+        print("Call to `blkid` failed. Maybe `sudo` error or invalid partition?")
+        return
+
 
 def mount(config, parse_args):
     logger.info("Calling 'mount' subcommand")
